@@ -38,11 +38,16 @@ router.post('/new_user', async (req, res) => {
 });
 
 router.get('/login/:username/:password', async (req, res)=>{
-    const user = await Model.findOne({username: req.params.username, password: req.params.password});
+    const user = await Model.findOne({username: req.params.username,});
     if(user!=null){
-        res.status(200).json(user);
+        const validPass = await bcrypt.compare(req.params.password, user.password);
+        if(validPass){
+            res.status(200).json(user);
+        }else{
+            res.status(400).json({message: "Invalid Password"})
+        }
     }else{
-        res.status(400).json({message: "Something Went Wrong"})
+        res.status(400).json({message: "User Does Not Exists"})
     }
 
 });
@@ -61,7 +66,7 @@ router.post('/set_score/', async (req, res) => {
             username: req.query.username,
             score: parseInt(req.query.score),
             device_details_hash: req.query.device_details_hash,
-            device_ip: req.query.device_ip,
+            device_ip: req.ip,
             avatar: req.query.avatar
         });
 
