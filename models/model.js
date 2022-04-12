@@ -28,6 +28,12 @@ const dataSchema = new mongoose.Schema({
     device_details_hash: {
         type: String
     },
+    device_ip: {
+        type: String
+    },
+    reason: {
+        type: String
+    }
 },
     {
         timestamps: true
