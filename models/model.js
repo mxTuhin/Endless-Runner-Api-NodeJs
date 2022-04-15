@@ -33,6 +33,9 @@ const dataSchema = new mongoose.Schema({
     },
     reason: {
         type: String
+    },
+    address: {
+        type: String
     }
 },
     {
