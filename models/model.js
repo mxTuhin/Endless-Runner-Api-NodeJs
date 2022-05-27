@@ -36,6 +36,9 @@ const dataSchema = new mongoose.Schema({
     },
     address: {
         type: String
+    },
+    secure_hash: {
+        type: String
     }
 },
     {

@@ -15,6 +15,9 @@ const dataSchema = new mongoose.Schema({
         },
         avatar: {
             type: String
+        },
+        secure_hash: {
+            type: String
         }
     },
     {
